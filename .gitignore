@@ -1,10 +1,20 @@
 # Angular
-.editconfig
-aspnetcore-https.js
-karma.conf.js
-nuget.config
+/ToDoList.Frontend/.editorconfig
+/ToDoList.Frontend/aspnetcore-https.js
+/ToDoList.Frontend/karma.conf.js
+/ToDoList.Frontend/nuget.config
+/ToDoList.Frontend/.vscode/
+/ToDoList.Frontend/obj/
 
 # .NET Web API
 *.publishsettings
 *.pfx
-node_modules/
+/ToDoList.API/bin/
+/ToDoList.API/obj/
+/ToDoList.API/node_modules/
+/ToDoList.API/appsettings.json
+/ToDoList.API/appsettings.Development.json
+/ToDoList.API/Properties/launchSettings.json
+/.vs/
+.vscode/
+.gitattributes
