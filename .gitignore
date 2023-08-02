@@ -1,0 +1,10 @@
+# Angular
+.editconfig
+aspnetcore-https.js
+karma.conf.js
+nuget.config
+
+# .NET Web API
+*.publishsettings
+*.pfx
+node_modules/

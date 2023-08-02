@@ -1,0 +1,2 @@
+D:\Projects\to-do-list\ToDoList.Frontend\obj\Debug\ToDoList.Frontend.esproj.SuggestedBindingRedirects.cache
+D:\Projects\to-do-list\ToDoList.Frontend\obj\Debug\ToDoList.Frontend.esproj.CoreCompileInputs.cache

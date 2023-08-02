@@ -1,0 +1,9 @@
+CREATE TABLE Tasks (
+	TaskId SERIAL PRIMARY KEY,
+	Title VARCHAR(100) NOT NULL,
+	Description TEXT,
+	IsCompleted BOOLEAN DEFAULT false,
+	DueDate DATE,
+	UserId INTEGER NOT NULL,
+	FOREIGN KEY (UserId) REFERENCES Users (UserId)
+);
