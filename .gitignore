@@ -1,19 +1,16 @@
 # Angular
-/ToDoList.Frontend/.editorconfig
-/ToDoList.Frontend/aspnetcore-https.js
-/ToDoList.Frontend/karma.conf.js
-/ToDoList.Frontend/nuget.config
-/ToDoList.Frontend/.vscode/
-/ToDoList.Frontend/obj/
-/ToDoList.Frontend/node_modules/
+/Frontend/.editorconfig
+/Frontend/aspnetcore-https.js
+/Frontend/karma.conf.js
+/Frontend/nuget.config
+/Frontend/node_modules/
 
 # .NET Web API
-/ToDoList.API/bin/
-/ToDoList.API/obj/
-/ToDoList.API/node_modules/
-/ToDoList.API/appsettings.json
-/ToDoList.API/appsettings.Development.json
-/ToDoList.API/Properties/launchSettings.json
-/.vs/
-/.vscode/
-/.vs
+/API/appsettings.json
+/API/appsettings.Development.json
+/API/Properties/launchSettings.json
+
+**/bin/
+**/obj/
+**/.vscode/
+**/.vs

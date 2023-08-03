@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace ToDoList.API.Models
+namespace API.Models
 {
     public class Task
     {
