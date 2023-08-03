@@ -5,10 +5,9 @@
 /ToDoList.Frontend/nuget.config
 /ToDoList.Frontend/.vscode/
 /ToDoList.Frontend/obj/
+/ToDoList.Frontend/node_modules/
 
 # .NET Web API
-*.publishsettings
-*.pfx
 /ToDoList.API/bin/
 /ToDoList.API/obj/
 /ToDoList.API/node_modules/
@@ -16,5 +15,5 @@
 /ToDoList.API/appsettings.Development.json
 /ToDoList.API/Properties/launchSettings.json
 /.vs/
-.vscode/
-.gitattributes
+/.vscode/
+/.vs
