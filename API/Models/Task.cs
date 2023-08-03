@@ -9,7 +9,6 @@ namespace API.Models
         [Required]
         public required string Title { get; set; } 
 
-        [Required]
         public required string Description { get; set; }
 
         public bool IsCompleted { get; set; }
@@ -18,7 +17,6 @@ namespace API.Models
 
         public int UserId { get; set; }
 
-        [Required]
         public required User User { get; set; } 
     }
 }
