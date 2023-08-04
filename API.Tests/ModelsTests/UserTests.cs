@@ -16,11 +16,28 @@ namespace API.Tests.ModelsTests
                 PasswordHash = "passssworrd"
             };
 
-            ValidationContext context = new(user, serviceProvider: null, items: null);
-            List<ValidationResult> result = new();
-            bool isValid = Validator.TryValidateObject(user, context, result, validateAllProperties: true);
+            var validationResult = ModelValidator.ValidateModel(user);
 
-            Assert.That(isValid, Is.True, "User model should pass validation");
+            Assert.That(validationResult, Is.Empty, "User model should pass validation");
+        }
+
+        [Test]
+        public void User_FirstNameIsMissing_Error()
+        {
+            User user = new()
+            {
+                LastName = "Ivanenko",
+                Email = "ivan.ivanenko@example.com",
+                PasswordHash = "passssworrd"
+            };
+
+            var validationResult = ModelValidator.ValidateModel(user);
+            Assert.Multiple(() =>
+            {
+                Assert.That(validationResult, Is.Not.Empty, "Validation should fail due to missing FirstName");
+                Assert.That(validationResult, Has.Count.EqualTo(1), "There should be one validation error.");
+                Assert.That(validationResult.Any(e => e.ErrorMessage!.Contains("required")), Is.True, "Validation error should contain 'required'");
+            });
         }
     }
 }

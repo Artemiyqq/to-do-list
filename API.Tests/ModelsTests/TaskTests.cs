@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace API.Tests.ModelsTests
+﻿namespace API.Tests.ModelsTests
 {
     [TestFixture]
     public class TaskTests
@@ -16,11 +14,9 @@ namespace API.Tests.ModelsTests
                 UserId = 1
             };
 
-            ValidationContext context = new(task, serviceProvider: null, items: null);
-            List<ValidationResult> results = new();
-            bool isValid = Validator.TryValidateObject(task, context, results, validateAllProperties: true);
+            var validationResult = ModelValidator.ValidateModel(task);
 
-            Assert.That(isValid, Is.True, "Task model should pass validation");
+            Assert.That(validationResult, Is.Empty, "Task model should pass validation");
         }
     }
 }
