@@ -1,0 +1,23 @@
+<div class="main">
+    <input type="checkbox" id="chk" aria-hidden="true">
+
+    <div class="signup">
+        <form>
+            <label for="chk" aria-hidden="true">Sign up</label>
+            <input type="text" name="txt" placeholder="First Name" required minlength="2" pattern="^[A-Z][a-z]{1,}$" title="First name must begin with an uppercase letter and containing at least two letters">
+            <input type="text" name="txt" placeholder="Last Name" required minlength="2" pattern="^[A-Z][a-z]{1,}$" title="Last name must begin with an uppercase letter and containing at least two letters">
+            <input type="email" name="email" placeholder="Email" required pattern="^[A-Za-z0-9\.]+@[a-z]+\.[a-z]{2,3}$" title="Please enter a valid email address">
+            <input type="password" name="pswd" minlength="8" placeholder="Password" required>
+            <button>Sign up</button>
+        </form>
+    </div>
+
+    <div class="login">
+        <form>
+            <label for="chk" aria-hidden="true">Login</label>
+            <input type="email" name="email" placeholder="Email" required pattern="^[A-Za-z0-9\.]+@[a-z]+\.[a-z]{2,3}$" title="Please enter a valid email address">
+            <input type="password" name="pswd" minlength="8" placeholder="Password" required>
+            <button>Login</button>
+        </form>
+    </div>
+</div>

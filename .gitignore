@@ -11,6 +11,8 @@
 /API/Properties/launchSettings.json
 
 **/bin/
+**/dist/
 **/obj/
 **/.vscode/
 **/.vs
+**/.angular/
