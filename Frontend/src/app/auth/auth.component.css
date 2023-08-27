@@ -29,15 +29,19 @@ label {
 
 input {
 	width: 60%;
-	height: 20px;
+	height: 21px;
 	background: #e0dede;
 	justify-content: center;
 	display: flex;
-	margin: 20px auto;
-	padding: 10px;
-	border: none;
+	margin: 17px auto;
+	padding: 9px;
+	border: 2px solid #e0dede;
 	outline: none;
 	border-radius: 5px;
+}
+
+input.ng-invalid {
+	border: 2px solid rgb(155, 39, 54);
 }
 
 button {
@@ -64,7 +68,7 @@ button:hover {
 }
 
 button:active {
-    transform: scale(.9)
+	transform: scale(.9)
 }
 
 .login {
@@ -93,4 +97,17 @@ button:active {
 
 #chk:checked~.signup label {
 	transform: scale(.6);
+}
+
+.password-toggle {
+	position: relative;
+}
+
+.password-toggle img {
+	position: absolute;
+	right: 70px;
+	top: 20%;
+	transform: translateY(-265%);
+	cursor: pointer;
+	width: 8%;
 }

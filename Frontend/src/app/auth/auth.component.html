@@ -2,22 +2,70 @@
     <input type="checkbox" id="chk" aria-hidden="true">
 
     <div class="signup">
-        <form>
-            <label for="chk" aria-hidden="true">Sign up</label>
-            <input type="text" name="txt" placeholder="First Name" required minlength="2" pattern="^[A-Z][a-z]{1,}$" title="First name must begin with an uppercase letter and containing at least two letters">
-            <input type="text" name="txt" placeholder="Last Name" required minlength="2" pattern="^[A-Z][a-z]{1,}$" title="Last name must begin with an uppercase letter and containing at least two letters">
-            <input type="email" name="email" placeholder="Email" required pattern="^[A-Za-z0-9\.]+@[a-z]+\.[a-z]{2,3}$" title="Please enter a valid email address">
-            <input type="password" name="pswd" minlength="8" placeholder="Password" required>
-            <button>Sign up</button>
+        <form [formGroup]="signupForm">
+            <label for="chk" aria-hidden="true" (click)="switchToSignup()">Sign up</label>
+            <input type="text"
+                   name="txt"
+                   placeholder="First Name"
+                   formControlName="firstName"
+                   [class.ng-invalid]="signupForm.get('firstName')?.invalid && signupForm.get('firstName')?.touched"
+                   matTooltip="The first name must begin with an uppercase letter and contain at least two letters"
+                   [matTooltipPosition]="'left'"
+                   [matTooltipDisabled]="!signupForm.get('firstName')?.invalid">
+            <input type="text"
+                   name="txt"
+                   placeholder="Last Name"
+                   formControlName="lastName"
+                   [class.ng-invalid]="signupForm.get('lastName')?.invalid && signupForm.get('lastName')?.touched"
+                   matTooltip="The last name must begin with an uppercase letter and containing at least two letters"
+                   [matTooltipPosition]="'left'"
+                   [matTooltipDisabled]="!signupForm.get('lastName')?.invalid">
+            <input type="email"
+                   name="email"
+                   placeholder="Email"
+                   formControlName="signupEmail"
+                   [class.ng-invalid]="signupForm.get('signupEmail')?.invalid && signupForm.get('signupEmail')?.touched"
+                   matTooltip="Please, enter a valid email"
+                   [matTooltipPosition]="'left'"
+                   [matTooltipDisabled]="!signupForm.get('signupEmail')?.invalid">
+            <input type="{{ showSignupPassword ? 'text' : 'password' }}"
+                   name="pswd"
+                   placeholder="Password"
+                   formControlName="signupPassword"
+                   [class.ng-invalid]="signupForm.get('signupPassword')?.invalid && signupForm.get('signupPassword')?.touched"
+                   [matTooltipPosition]="'left'"
+                   matTooltip="The password must be between 8 and 20 characters long and can only contain letters (both uppercase and lowercase), numbers, and the special characters !, @, #, $, %"
+                   [matTooltipDisabled]="!signupForm.get('signupPassword')?.invalid">
+            <div class="password-toggle">
+                <img src="../assets/eye-icon.png"  (click)="toggleSignupPassword()">
+            </div>
+            <button type="submit">Sign up</button>
         </form>
     </div>
 
     <div class="login">
-        <form>
-            <label for="chk" aria-hidden="true">Login</label>
-            <input type="email" name="email" placeholder="Email" required pattern="^[A-Za-z0-9\.]+@[a-z]+\.[a-z]{2,3}$" title="Please enter a valid email address">
-            <input type="password" name="pswd" minlength="8" placeholder="Password" required>
-            <button>Login</button>
+        <form [formGroup]="loginForm">
+            <label for="chk" aria-hidden="true" (click)="switchToLogin()">Login</label>
+            <input type="email"
+                   name="email"
+                   placeholder="Email"
+                   formControlName="loginEmail"
+                   [class.ng-invalid]="loginForm.get('loginEmail')?.invalid && loginForm.get('loginEmail')?.touched"
+                   matTooltip="Please, enter a valid email"
+                   [matTooltipPosition]="'left'"
+                   [matTooltipDisabled]="!loginForm.get('loginEmail')?.invalid">
+            <input type="{{ showLoginPassword ? 'text' : 'password' }}"
+                   name="pswd"
+                   placeholder="Password"
+                   formControlName="loginPassword"
+                   [class.ng-invalid]="loginForm.get('loginPassword')?.invalid && loginForm.get('loginPassword')?.touched"
+                   [matTooltipPosition]="'left'"
+                   matTooltip="The password cannot be less than 8 characters"
+                   [matTooltipDisabled]="!loginForm.get('loginPassword')?.invalid">
+            <div class="password-toggle">
+                <img src="../assets/eye-icon.png" (click)="toggleLoginPassword()">
+            </div>
+            <button type="submit">Login</button>
         </form>
     </div>
 </div>
