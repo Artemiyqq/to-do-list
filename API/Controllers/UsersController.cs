@@ -20,10 +20,10 @@ namespace API.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<User>>> GetUsers()
         {
-          if (_context.Users == null)
-          {
-              return NotFound();
-          }
+            if (_context.Users == null)
+            {
+                return NotFound();
+            }
             return await _context.Users.ToListAsync();
         }
 
@@ -31,10 +31,10 @@ namespace API.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<User>> GetUser(int id)
         {
-          if (_context.Users == null)
-          {
-              return NotFound();
-          }
+            if (_context.Users == null)
+            {
+                return NotFound();
+            }
             var user = await _context.Users.FindAsync(id);
 
             if (user == null)
@@ -43,6 +43,20 @@ namespace API.Controllers
             }
 
             return user;
+        }
+
+        // GET: api/Users/example@email.com
+        [HttpGet("check-email")]
+        public async Task<ActionResult<bool>> CheckIfEmailExists([FromQuery] string email)
+        {
+            if (_context.Users == null)
+            {
+                return false;
+            }
+
+            bool userWithEmail = await _context.Users.AnyAsync(u => u.Email == email);
+
+            return userWithEmail;
         }
 
         // PUT: api/Users/5

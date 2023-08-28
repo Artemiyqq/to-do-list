@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from './auth.service';
 
 @Component({
   selector: 'app-auth',
@@ -11,7 +12,9 @@ export class AuthComponent {
   loginForm: FormGroup;
   signupForm: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  emailAlreadyExist: boolean = false;
+
+  constructor(private fb: FormBuilder, private authService: AuthService) {
     this.signupForm = this.fb.group({
       firstName: ['', [Validators.required, Validators.pattern('^[A-Z][a-z]{1,}$')]],
       lastName: ['', [Validators.required, Validators.pattern('^[A-Z][a-z]{1,}$')]],
@@ -31,6 +34,7 @@ export class AuthComponent {
 
   switchToLogin(): void {
     this.signupForm.reset();
+    this.emailAlreadyExist = false;
   }
 
   showLoginPassword: boolean = false;
@@ -42,5 +46,18 @@ export class AuthComponent {
 
   toggleSignupPassword(): void {
     this.showSignupPassword = !this.showSignupPassword;
+  }
+
+  checkEmail(email: string, formName: string) {
+    this.authService.checkEmailExists(email).subscribe(result => {
+      if (result) {
+        this.emailAlreadyExist = true;
+      } else {
+        this.emailAlreadyExist = false;
+        if (formName == 'signupForm') {
+          this.signupForm.controls['signupEmail'].setErrors({'incorrect': true});
+        }
+      }
+    });
   }
 }

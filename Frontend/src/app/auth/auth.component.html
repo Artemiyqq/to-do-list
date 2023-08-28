@@ -24,10 +24,11 @@
                    name="email"
                    placeholder="Email"
                    formControlName="signupEmail"
-                   [class.ng-invalid]="signupForm.get('signupEmail')?.invalid && signupForm.get('signupEmail')?.touched"
-                   matTooltip="Please, enter a valid email"
+                   [class.ng-invalid]="(signupForm.get('signupEmail')?.invalid && signupForm.get('signupEmail')?.touched) || emailAlreadyExist"
+                   matTooltip="{{ emailAlreadyExist ? 'Such an email already exists' : 'Please, enter a valid email' }}"
                    [matTooltipPosition]="'left'"
-                   [matTooltipDisabled]="!signupForm.get('signupEmail')?.invalid">
+                   [matTooltipDisabled]="!signupForm.get('signupEmail')?.invalid && !emailAlreadyExist"
+                   (focusout) = "checkEmail(signupForm.get('signupEmail')?.value, 'signupForm')">
             <input type="{{ showSignupPassword ? 'text' : 'password' }}"
                    name="pswd"
                    placeholder="Password"
