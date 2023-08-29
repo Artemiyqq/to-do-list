@@ -3,7 +3,7 @@
 
     <div class="signup">
         <form [formGroup]="signupForm">
-            <label for="chk" aria-hidden="true" (click)="switchToSignup()">Sign up</label>
+            <label class="signup-label" for="chk" aria-hidden="true" (click)="switchToSignup()">Sign up</label>
             <input type="text"
                    name="txt"
                    placeholder="First Name"
@@ -46,7 +46,10 @@
 
     <div class="login">
         <form [formGroup]="loginForm">
-            <label for="chk" aria-hidden="true" (click)="switchToLogin()">Login</label>
+            <div class="login-label-and-error-h4">
+                <label for="chk" aria-hidden="true" (click)="switchToLogin()">Login</label>
+                <h4 *ngIf="loginDataIncorrect">Incorrect email or password</h4>
+            </div>
             <input type="email"
                    name="email"
                    placeholder="Email"

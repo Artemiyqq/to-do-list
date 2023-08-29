@@ -13,6 +13,7 @@ export class AuthComponent {
   signupForm: FormGroup;
 
   emailAlreadyExist: boolean = false;
+  loginDataIncorrect: boolean = false;
 
   constructor(private fb: FormBuilder, private authService: AuthService) {
     this.signupForm = this.fb.group({
