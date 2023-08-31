@@ -2,7 +2,7 @@
     <input type="checkbox" id="chk" aria-hidden="true">
 
     <div class="signup">
-        <form [formGroup]="signupForm">
+        <form [formGroup]="signupForm" (submit)="registerUser()">
             <label class="signup-label" for="chk" aria-hidden="true" (click)="switchToSignup()">Sign up</label>
             <input type="text"
                    name="txt"
@@ -28,7 +28,7 @@
                    matTooltip="{{ emailAlreadyExist ? 'Such an email already exists' : 'Please, enter a valid email' }}"
                    [matTooltipPosition]="'left'"
                    [matTooltipDisabled]="!signupForm.get('signupEmail')?.invalid && !emailAlreadyExist"
-                   (focusout) = "checkEmail(signupForm.get('signupEmail')?.value, 'signupForm')">
+                   (focusout) = "checkEmail()">
             <input type="{{ showSignupPassword ? 'text' : 'password' }}"
                    name="pswd"
                    placeholder="Password"

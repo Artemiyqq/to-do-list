@@ -2,7 +2,7 @@
 
 namespace API.Services
 {
-    public class PasswordService
+    public static class PasswordService
     {
         private const int _saltSize = 16;
         private const int _keySize = 32;

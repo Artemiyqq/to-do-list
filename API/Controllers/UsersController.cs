@@ -2,6 +2,8 @@
 using Microsoft.EntityFrameworkCore;
 using API.Data;
 using API.Models;
+using API.Services;
+using System.Text.Json.Nodes;
 
 namespace API.Controllers
 {
@@ -45,7 +47,6 @@ namespace API.Controllers
             return user;
         }
 
-        // GET: api/Users/example@email.com
         [HttpGet("check-email")]
         public async Task<ActionResult<bool>> CheckIfEmailExists([FromQuery] string email)
         {
@@ -93,16 +94,26 @@ namespace API.Controllers
         // POST: api/Users
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<User>> PostUser(User user)
+        public async Task<IActionResult> PostUser([FromBody] NewUserDto newUserDto)
         {
-          if (_context.Users == null)
-          {
-              return Problem("Entity set 'ToDoListDbContext.Users'  is null.");
-          }
-            _context.Users.Add(user);
+            if (_context.Users == null)
+            {
+                return Problem("Entity set 'ToDoListDbContext.Users'  is null.");
+            }
+
+
+            User newUser = new()
+            {
+                FirstName = newUserDto.FirstName,
+                LastName = newUserDto.LastName,
+                Email = newUserDto.Email,
+                PasswordHash = PasswordService.Hash(newUserDto.Password)
+            };
+
+            _context.Users.Add(newUser);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetUser", new { id = user.Id }, user);
+            return Ok( new { message = "User registred successfully" });
         }
 
         // DELETE: api/Users/5
