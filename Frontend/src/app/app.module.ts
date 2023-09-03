@@ -7,17 +7,24 @@ import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTooltipModule } from "@angular/material/tooltip"
 import { ReactiveFormsModule } from '@angular/forms';
+import { SidebarComponent } from './sidebar/sidebar.component';
+import { TaskListComponent } from './task-list/task-list.component';
+import { TaskItemComponent } from './task-item/task-item.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
-  declarations: [AppComponent, AuthComponent],
-  imports: [
-    BrowserModule,
-    HttpClientModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    MatTooltipModule,
-    ReactiveFormsModule,
-  ],
+  declarations: [AppComponent,
+                 AuthComponent,
+                 SidebarComponent,
+                 TaskListComponent,
+                 TaskItemComponent,
+                 DashboardComponent],
+  imports: [BrowserModule,
+            HttpClientModule,
+            AppRoutingModule,
+            BrowserAnimationsModule,
+            MatTooltipModule,
+            ReactiveFormsModule],
   providers: [],
   bootstrap: [AppComponent]
 })
