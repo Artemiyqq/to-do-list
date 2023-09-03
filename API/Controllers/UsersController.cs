@@ -60,6 +60,20 @@ namespace API.Controllers
             return userWithEmail;
         }
 
+        [HttpPost("try-to-login")]
+        public Task<IActionResult> TryToLogin([FromBody] LoginDto loginDto)
+        {
+            var user = _context.Users.SingleOrDefault(u => u.Email == loginDto.Email);
+            if (user != null)
+            {
+                if (PasswordService.Verify(loginDto.Password, user.PasswordHash))
+                {
+                    return System.Threading.Tasks.Task.FromResult<IActionResult>(Ok(new { userId =  user.Id }));
+                }
+            }
+            return System.Threading.Tasks.Task.FromResult<IActionResult>(Unauthorized(new { message = "Invalid credentials" }));
+        }
+
         // PUT: api/Users/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]

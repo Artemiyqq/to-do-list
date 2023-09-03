@@ -2,7 +2,7 @@
     <input type="checkbox" id="chk" aria-hidden="true">
 
     <div class="signup">
-        <form [formGroup]="signupForm" (submit)="registerUser()">
+        <form [formGroup]="signupForm" (submit)="onSubmitSignup()">
             <label class="signup-label" for="chk" aria-hidden="true" (click)="switchToSignup()">Sign up</label>
             <input type="text"
                    name="txt"
@@ -45,7 +45,7 @@
     </div>
 
     <div class="login">
-        <form [formGroup]="loginForm">
+        <form [formGroup]="loginForm" (submit)="onSubmitLogin()">
             <div class="login-label-and-error-h4">
                 <label for="chk" aria-hidden="true" (click)="switchToLogin()">Login</label>
                 <h4 *ngIf="loginDataIncorrect">Incorrect email or password</h4>
