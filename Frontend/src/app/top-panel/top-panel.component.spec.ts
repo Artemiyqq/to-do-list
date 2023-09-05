@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SidebarComponent } from './sidebar.component';
+import { TopPanelComponent } from './top-panel.component';
 
-describe('SidebarComponent', () => {
-  let component: SidebarComponent;
-  let fixture: ComponentFixture<SidebarComponent>;
+describe('TopPanelComponent', () => {
+  let component: TopPanelComponent;
+  let fixture: ComponentFixture<TopPanelComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [SidebarComponent]
+      declarations: [TopPanelComponent]
     });
-    fixture = TestBed.createComponent(SidebarComponent);
+    fixture = TestBed.createComponent(TopPanelComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
