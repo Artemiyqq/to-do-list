@@ -6,5 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./top-panel.component.css']
 })
 export class TopPanelComponent {
+  activeCategory: string = 'All';
 
+  setActiveCategory(category: string) {
+    this.activeCategory = category;
+  }  
 }

@@ -1,1 +1,13 @@
-<p>top-panel works!</p>
+<div class="top-panel">
+  <div class="category-buttons">
+    <img src="assets/to-do-list.jpg" alt="Tasks Image" class="tasks-image">
+    <button class="category-button" [class.active]="activeCategory === 'All'" (click)="setActiveCategory('All')">All</button>
+    <button class="category-button" [class.active]="activeCategory === 'Not Completed'" (click)="setActiveCategory('Not Completed')">Not Completed</button>
+    <button class="category-button" [class.active]="activeCategory === 'Completed'" (click)="setActiveCategory('Completed')">Completed</button>
+  </div>
+
+  <div class="account-button-container">
+    <img src="assets/account-icon.png" alt="Account Image" class="account-image">
+    <button class="account-button">Hello, John Doe</button>
+  </div>
+</div>
