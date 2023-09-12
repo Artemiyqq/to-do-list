@@ -36,7 +36,7 @@
             <form [formGroup]="loginForm" (submit)="onSubmitLogin()">
                 <div class="login-label-and-error-h4">
                     <label for="chk" aria-hidden="true" (click)="switchToLogin()">Login</label>
-                    <h4 class="failed-attempt-to-login" >Incorrect email or password</h4>
+                    <h4 class="failed-attempt-to-login" *ngIf="loginDataIncorrect">Incorrect email or password</h4>
                     <h4 class="succesful-sign-up" *ngIf="registeredSuccessfully">You can now log in to your account</h4>
                 </div>
                 <input type="email" name="email" placeholder="Email" formControlName="loginEmail"
