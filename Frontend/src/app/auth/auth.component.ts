@@ -14,8 +14,11 @@ export class AuthComponent {
   loginForm: FormGroup;
   signupForm: FormGroup;
 
+  isCheckboxChecked: boolean = false;
+
   emailAlreadyExist: boolean = false;
   loginDataIncorrect: boolean = false;
+  registeredSuccessfully: boolean = false;
 
   constructor(private fb: FormBuilder, private authService: AuthService) {
     this.signupForm = this.fb.group({
@@ -33,6 +36,7 @@ export class AuthComponent {
 
   switchToSignup(): void {
     this.loginForm.reset();
+    this.loginDataIncorrect = false;
   }
 
   switchToLogin(): void {
@@ -70,8 +74,14 @@ export class AuthComponent {
                                                   this.signupForm.controls['signupPassword'].value);
     this.authService.postUser(newUserDto).subscribe({
       error: (e) => console.error(e),
-      complete: () => console.info('complete')
+      complete: () => this.successfulRegistration()
     });
+  }
+
+  successfulRegistration(): void {
+    this.switchToLogin();
+    this.isCheckboxChecked = !this.isCheckboxChecked;
+    this.registeredSuccessfully = true;
   }
 
   onSubmitLogin(): void {
@@ -83,12 +93,17 @@ export class AuthComponent {
         if (response.userId) {
           console.log("Success");
         } else {
-          console.log("Login failed");
+          console.log("An error occurred:", response);
         }
       },
       error: (error) => {
-        console.error('Error', error);
+        if (error.status === 401) {
+          this.loginDataIncorrect = true;
+        }
+        else {
+          console.error('An error occurred:', error);
+        }
       }
     });  
-  }
+  }  
 }

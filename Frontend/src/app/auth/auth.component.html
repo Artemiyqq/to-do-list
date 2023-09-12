@@ -1,6 +1,6 @@
 <div class="container">
     <div class="main">
-        <input type="checkbox" id="chk" aria-hidden="true">
+        <input type="checkbox" [(ngModel)]="isCheckboxChecked" id="chk" aria-hidden="true">
 
         <div class="signup">
             <form [formGroup]="signupForm" (submit)="onSubmitSignup()">
@@ -36,7 +36,8 @@
             <form [formGroup]="loginForm" (submit)="onSubmitLogin()">
                 <div class="login-label-and-error-h4">
                     <label for="chk" aria-hidden="true" (click)="switchToLogin()">Login</label>
-                    <h4 *ngIf="loginDataIncorrect">Incorrect email or password</h4>
+                    <h4 class="failed-attempt-to-login" >Incorrect email or password</h4>
+                    <h4 class="succesful-sign-up" *ngIf="registeredSuccessfully">You can now log in to your account</h4>
                 </div>
                 <input type="email" name="email" placeholder="Email" formControlName="loginEmail"
                     [class.ng-invalid]="loginForm.get('loginEmail')?.invalid && loginForm.get('loginEmail')?.touched"

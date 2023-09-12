@@ -101,12 +101,19 @@ button:active {
 	padding-top: 40px;
 }
 
-h4 {
+.failed-attempt-to-login, .succesful-sign-up {
 	justify-content: center;
 	display: flex;
-	color: #9c0000;
 	margin-top: 0%;
 	padding-top: 0%;
+}
+
+.failed-attempt-to-login {
+	color: #ff7373;
+}
+
+.succesful-sign-up {
+	color: #67b664;
 }
 
 #chk:checked~.login {

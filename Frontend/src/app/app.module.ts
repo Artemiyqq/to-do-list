@@ -6,7 +6,7 @@ import { AuthComponent } from './auth/auth.component';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTooltipModule } from "@angular/material/tooltip"
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TaskListComponent } from './task-list/task-list.component';
 import { TaskItemComponent } from './task-item/task-item.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -24,7 +24,8 @@ import { TopPanelComponent } from './top-panel/top-panel.component';
             AppRoutingModule,
             BrowserAnimationsModule,
             MatTooltipModule,
-            ReactiveFormsModule],
+            ReactiveFormsModule,
+            FormsModule],
   providers: [],
   bootstrap: [AppComponent]
 })
