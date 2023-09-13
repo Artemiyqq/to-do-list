@@ -3,14 +3,16 @@ import { Injectable } from "@angular/core"
 import { NewUserDto } from "../models/new-user-dto.model";
 import { LoginDto } from "../models/login-dto.model";
 import { Observable }  from 'rxjs';
+import { Router } from "@angular/router";
 
 @Injectable({
     providedIn: 'root'
 })
 export class AuthService {
     private apiBaseurl = '';
+    private loginData: LoginDto | null = null;
 
-    constructor(private http: HttpClient) {}
+    constructor(private http: HttpClient, private router: Router) {}
 
     checkEmailExists(email: string)
     {
@@ -26,5 +28,17 @@ export class AuthService {
     tryToLogin(loginDto: LoginDto): Observable<any>
     {
         return this.http.post(`${this.apiBaseurl}/api/users/try-to-login`, loginDto);
+    }
+
+    setLoginData(data: LoginDto) {
+        this.loginData = data;
+    }
+
+    getLoginData(): LoginDto | null {
+        return this.loginData;
+    }
+
+    loginSuccess() {
+        this.router.navigate(['/dashboard']);
     }
 }

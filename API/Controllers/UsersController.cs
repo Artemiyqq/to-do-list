@@ -68,7 +68,7 @@ namespace API.Controllers
             {
                 if (PasswordService.Verify(loginDto.Password, user.PasswordHash))
                 {
-                    return System.Threading.Tasks.Task.FromResult<IActionResult>(Ok(new { userId =  user.Id }));
+                    return System.Threading.Tasks.Task.FromResult<IActionResult>(Ok(new { message = "Success" }));
                 }
             }
             return System.Threading.Tasks.Task.FromResult<IActionResult>(Unauthorized(new { message = "Invalid credentials" }));

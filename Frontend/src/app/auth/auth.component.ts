@@ -90,10 +90,11 @@ export class AuthComponent {
     const loginDto: LoginDto = new LoginDto(email, password);
     this.authService.tryToLogin(loginDto).subscribe({
       next: (response) => {
-        if (response.userId) {
-          console.log("Success");
+        if (response.message === 'Success') {
+          this.authService.setLoginData(loginDto);
+          this.authService.loginSuccess();
         } else {
-          console.log("An error occurred:", response);
+          console.log("An error occurred tests:", response);
         }
       },
       error: (error) => {
