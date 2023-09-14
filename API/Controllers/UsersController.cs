@@ -60,6 +60,15 @@ namespace API.Controllers
             return userWithEmail;
         }
 
+        [HttpGet("get-full-name")]
+        public async Task<ActionResult<string>> GetFullName([FromQuery] string email)
+        {
+            var user =  await _context.Users.SingleOrDefaultAsync(u => u.Email == email);
+
+            return user == null ? (ActionResult<string>)NotFound() : (ActionResult<string>)Ok( new { fullName = $"{user.FirstName} {user.LastName}" });
+            }
+
+
         [HttpPost("try-to-login")]
         public Task<IActionResult> TryToLogin([FromBody] LoginDto loginDto)
         {
