@@ -10,7 +10,6 @@ import { Router } from "@angular/router";
 })
 export class AuthService {
     private apiBaseurl = '';
-    private loginData: LoginDto | null = null;
 
     constructor(private http: HttpClient, private router: Router) {}
 
@@ -30,13 +29,6 @@ export class AuthService {
         return this.http.post(`${this.apiBaseurl}/api/users/try-to-login`, loginDto);
     }
 
-    setLoginData(data: LoginDto) {
-        this.loginData = data;
-    }
-
-    getLoginData(): LoginDto | null {
-        return this.loginData;
-    }
 
     loginSuccess() {
         this.router.navigate(['/dashboard']);

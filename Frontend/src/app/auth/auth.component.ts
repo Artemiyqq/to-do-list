@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from './auth.service';
 import { NewUserDto } from '../models/new-user-dto.model';
 import { LoginDto } from '../models/login-dto.model';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-auth',
@@ -20,7 +21,7 @@ export class AuthComponent {
   loginDataIncorrect: boolean = false;
   registeredSuccessfully: boolean = false;
 
-  constructor(private fb: FormBuilder, private authService: AuthService) {
+  constructor(private fb: FormBuilder, private authService: AuthService, private userService: UserService) {
     this.signupForm = this.fb.group({
       firstName: ['', [Validators.required, Validators.pattern('^[A-Z][a-z]{1,}$')]],
       lastName: ['', [Validators.required, Validators.pattern('^[A-Z][a-z]{1,}$')]],
@@ -91,7 +92,7 @@ export class AuthComponent {
     this.authService.tryToLogin(loginDto).subscribe({
       next: (response) => {
         if (response.message === 'Success') {
-          this.authService.setLoginData(loginDto);
+          this.userService.setLoginData(loginDto);
           this.authService.loginSuccess();
         } else {
           console.log("An error occurred tests:", response);

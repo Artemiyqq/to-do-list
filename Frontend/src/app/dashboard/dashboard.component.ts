@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { LoginDto } from '../models/login-dto.model';
-import { AuthService } from '../auth/auth.service';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -10,7 +10,7 @@ import { AuthService } from '../auth/auth.service';
 export class DashboardComponent {
   loginData: LoginDto | null = null;
 
-  constructor(private authService: AuthService){
-    this.loginData = authService.getLoginData();
+  constructor(private userService: UserService){
+    this.loginData = userService.getLoginData();
   }
 }
