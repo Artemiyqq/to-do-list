@@ -1,3 +1,4 @@
+/* Custom CSS for the top-panel component */
 .top-panel {
     display: flex;
     justify-content: center;
@@ -8,16 +9,18 @@
     border-bottom-right-radius: 10px;
 }
 
-.category-buttons, .account-button-container {
+.category-buttons,
+.account-button-container {
     display: flex;
     justify-content: center;
 }
 
-.category-buttons{
+.category-buttons {
     padding-right: 2%;
 }
 
-.tasks-image, .account-image {
+.tasks-image,
+.account-image {
     width: 48px;
     height: 48px;
 }
@@ -26,12 +29,12 @@
     margin-right: 10px;
 }
 
-.category-button, .account-button {
+.category-button,
+.account-button {
     background-color: transparent;
     color: black;
     border: none;
     margin-right: 3px;
-    margin-top: 0px;
     cursor: pointer;
     font-size: 24px;
     font-weight: bold;
@@ -40,12 +43,65 @@
     border-radius: 10px;
 }
 
+.account-button {
+    margin-top: 5px;
+    padding: 5px 10px;
+    &:hover {
+        color: white;
+        background-color: rgb(182, 148, 148);
+    }
+}
+
+.account-button-dropdown {
+    position: relative;
+    display: inline-block;
+    width: fit-content; /* Make the dropdown's width match the button's content */
+}
+
+/* Modify the dropdown content */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #ffc6c6; /* Slightly darker background color */
+    width: 100%; /* Set the width to 100% to match the button's width */
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    right: 0;
+    top: calc(100% + 5px); /* Position it below the button with a small gap */
+    border-radius: 10px; /* Add rounded corners */
+}
+
+.dropdown-item {
+    background: transparent;
+    border: none;
+    padding: 10px;
+    width: 100%;
+    text-align: left;
+    font-size: 20px; /* Increase font size */
+    color: black; /* Text color */
+    border-radius: 10px; /* Preserve rounded corners */
+    transition: background-color 0.3s, color 0.3s; /* Smooth transition for hover effect */
+}
+
+/* Hover effect for dropdown items */
+.dropdown-item:hover {
+    background-color: rgb(243, 194, 194); /* Hover background color */
+    color: white; /* Hover text color */
+    cursor: pointer;
+}
+
+/* Show the dropdown content when the button is clicked */
+.account-button.active + .dropdown-content {
+    display: block;
+}
+
+/* Add hover effect for the category buttons */
 .category-button.active {
     background-color: rgb(0, 0, 0);
     color: white;
 }
 
-.category-button:not(.active):hover, .account-button:hover {
+.category-button:not(.active):hover {
     color: white;
     background-color: rgb(182, 148, 148);
 }

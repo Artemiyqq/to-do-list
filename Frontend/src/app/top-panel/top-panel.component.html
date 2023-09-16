@@ -8,6 +8,11 @@
 
   <div class="account-button-container">
     <img src="assets/account-icon.png" alt="Account Image" class="account-image">
-    <button class="account-button">Hello, {{ userFullName }}</button>
+    <div class="account-button-dropdown">
+      <button class="account-button" (click)="toggleDropdown()" [class.active]="showDropdown">Newww Userrrr</button>
+      <div class="dropdown-content" *ngIf="showDropdown">
+        <button class="dropdown-item" (click)="logout()">Log Out</button>
+      </div>
+    </div>
   </div>
 </div>

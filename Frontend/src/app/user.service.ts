@@ -16,6 +16,10 @@ export class UserService {
     this.loginData = data;
   }
 
+  deleteLoginData(): void{
+    this.loginData = null;
+  }
+
   getLoginData(): LoginDto | null {
     return this.loginData;
   }
