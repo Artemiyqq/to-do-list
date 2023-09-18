@@ -1,1 +1,26 @@
+.add-task-button-container {
+  position: fixed;
+  bottom: 8%;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+}
 
+/* Style for the "Add Task" button */
+.add-task-button {
+  font-size: 28px;
+  background-color: #f9f9f9;
+  color: black;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  background-color: #c5c5e2;
+  transition: background-color 0.3s, color 0.3s;
+  border-radius: 10px;
+  font-weight: bold;
+}
+
+.add-task-button:hover {
+  background-color: rgb(182, 148, 148);
+  color: white;
+}

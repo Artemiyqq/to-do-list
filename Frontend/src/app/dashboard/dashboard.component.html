@@ -1,6 +1,10 @@
 <div class="main">
     <app-top-panel></app-top-panel>
     <div class="content">
-        <router-outlet></router-outlet>
+        <app-task-list></app-task-list>
     </div>
+
+    <div class="add-task-button-container">
+        <button class="add-task-button" (click)="addTask()">Add Task</button>
+      </div>
 </div>

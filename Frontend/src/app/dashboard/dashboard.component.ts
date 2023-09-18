@@ -13,4 +13,8 @@ export class DashboardComponent {
   constructor(private userService: UserService){
     this.loginData = userService.getLoginData();
   }
+
+  addTask(): void {
+    
+  }
 }
