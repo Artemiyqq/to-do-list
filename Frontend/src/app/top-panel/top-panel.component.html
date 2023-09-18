@@ -9,7 +9,7 @@
   <div class="account-button-container">
     <img src="assets/account-icon.png" alt="Account Image" class="account-image">
     <div class="account-button-dropdown">
-      <button class="account-button" (click)="toggleDropdown()" [class.active]="showDropdown">Newww Userrrr</button>
+      <button class="account-button" (click)="toggleDropdown()" [class.active]="showDropdown">{{ userFullName }}</button>
       <div class="dropdown-content" *ngIf="showDropdown">
         <button class="dropdown-item" (click)="logout()">Log Out</button>
       </div>
