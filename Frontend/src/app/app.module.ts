@@ -8,24 +8,25 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTooltipModule } from "@angular/material/tooltip"
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TaskListComponent } from './task-list/task-list.component';
-import { TaskItemComponent } from './task-item/task-item.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { TopPanelComponent } from './top-panel/top-panel.component';
+import { TaskCreateModalComponent } from './task-create-modal/task-create-modal.component';
+
 
 @NgModule({
   declarations: [AppComponent,
-                 AuthComponent,
-                 TaskListComponent,
-                 TaskItemComponent,
-                 DashboardComponent,
-                 TopPanelComponent],
+    AuthComponent,
+    TaskListComponent,
+    DashboardComponent,
+    TopPanelComponent,
+    TaskCreateModalComponent,],
   imports: [BrowserModule,
-            HttpClientModule,
-            AppRoutingModule,
-            BrowserAnimationsModule,
-            MatTooltipModule,
-            ReactiveFormsModule,
-            FormsModule],
+    HttpClientModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MatTooltipModule,
+    ReactiveFormsModule,
+    FormsModule,],
   providers: [],
   bootstrap: [AppComponent]
 })
