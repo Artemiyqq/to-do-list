@@ -9,12 +9,17 @@ import { UserService } from '../user.service';
 })
 export class DashboardComponent {
   loginData: LoginDto | null = null;
+  isTaskCreateModalVisible: boolean = false;
 
-  constructor(private userService: UserService){
+  constructor(private userService: UserService) {
     this.loginData = userService.getLoginData();
   }
 
-  addTask(): void {
-    
+  showTaskCreateModal() {
+    this.isTaskCreateModalVisible = true;
+  }
+
+  hideTaskCreateModal() {
+    this.isTaskCreateModalVisible = false;
   }
 }

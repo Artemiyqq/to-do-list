@@ -5,6 +5,9 @@
     </div>
 
     <div class="add-task-button-container">
-        <button class="add-task-button" (click)="addTask()">Add Task</button>
-      </div>
+        <button class="add-task-button" (click)="showTaskCreateModal()">Add Task</button>
+    </div>
+
+    <!-- Use *ngIf to conditionally render the modal -->
+    <app-task-create-modal *ngIf="isTaskCreateModalVisible" (closeModalEvent)="hideTaskCreateModal()"></app-task-create-modal>
 </div>
