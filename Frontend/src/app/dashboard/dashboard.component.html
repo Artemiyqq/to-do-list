@@ -1,13 +1,12 @@
 <div class="main">
-    <app-top-panel></app-top-panel>
+    <app-top-panel (categoryButtonClick)="onCategoryButtonClick($event)"></app-top-panel>
     <div class="content">
         <app-task-list></app-task-list>
     </div>
 
     <div class="add-task-button-container">
-        <button class="add-task-button" (click)="showTaskCreateModal()">Add Task</button>
+        <button *ngIf="showAddTaskButton" class="add-task-button" (click)="showTaskCreateModal()">Add Task</button>
     </div>
 
-    <!-- Use *ngIf to conditionally render the modal -->
     <app-task-create-modal *ngIf="isTaskCreateModalVisible" (closeModalEvent)="hideTaskCreateModal()"></app-task-create-modal>
 </div>
