@@ -1,4 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Task } from '../models/task.model';
+import { TaskService } from '../services/task.service';
 
 @Component({
   selector: 'app-task-create-modal',
@@ -9,12 +11,26 @@ export class TaskCreateModalComponent {
   @Input() isVisible: boolean = false;
 
   @Output() closeModalEvent = new EventEmitter<void>();
+  @Output() createTaskEvent = new EventEmitter<Task>();
+
+  constructor(private taskService: TaskService) {}
 
   closeTaskModal() {
     this.closeModalEvent.emit();
   }
 
-  createTask() {
+  createTask(taskName: string, taskDescription: string, dueDate: string) {
+    this.taskService.createTask(taskName, taskDescription, dueDate)
     this.closeTaskModal();
+  }
+
+  getMinDateTime(): string {
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = (today.getMonth() + 1).toString().padStart(2, '0');
+    const day = today.getDate().toString().padStart(2, '0');
+    const hours = today.getHours().toString().padStart(2, '0');
+    const minutes = today.getMinutes().toString().padStart(2, '0');
+    return `${year}-${month}-${day}T${hours}:${minutes}`;
   }
 }

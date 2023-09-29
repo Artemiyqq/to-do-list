@@ -4,19 +4,19 @@
         <form>
             <div class="form-group">
                 <label for="taskName">Task Name</label>
-                <input type="text" id="taskName" class="small-input">
+                <input type="text" id="taskName" class="small-input" #taskNameInput>
             </div>
             <div class="form-group">
                 <label for="taskDescription">Task Description (Optional)</label>
-                <textarea id="taskDescription" rows="4" style="resize: none;"></textarea>
+                <textarea id="taskDescription" rows="4" style="resize: none;" #taskDescriptionInput></textarea>
             </div>
             <div class="form-group">
-                <label for="dueDate">Due Date</label>
-                <input type="date" id="dueDate" class="date-input">
+                <label for="dueDateTime">Due Date</label>
+                <input type="datetime-local" id="dueDateTime" class="date-input" #dueDateTimeInput [min]="getMinDateTime()">
             </div>
             <div class="button-group">
                 <button class="cancel-button" (click)="closeTaskModal()">Cancel</button>
-                <button class="create-button" (click)="createTask()">Save</button>
+                <button class="create-button" (click)="createTask(taskNameInput.value, taskDescriptionInput.value, dueDateTimeInput.value)">Save</button>
             </div>
         </form>
     </div>

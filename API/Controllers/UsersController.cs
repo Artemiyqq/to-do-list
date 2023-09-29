@@ -61,12 +61,12 @@ namespace API.Controllers
         }
 
         [HttpGet("get-full-name")]
-        public async Task<ActionResult<string>> GetFullName([FromQuery] string email)
+        public async Task<ActionResult<string>> GetFullName([FromQuery] int userId)
         {
-            var user =  await _context.Users.SingleOrDefaultAsync(u => u.Email == email);
+            var user =  await _context.Users.SingleOrDefaultAsync(u => u.Id == userId);
 
             return user == null ? (ActionResult<string>)NotFound() : (ActionResult<string>)Ok( new { fullName = $"{user.FirstName} {user.LastName}" });
-            }
+        }
 
 
         [HttpPost("try-to-login")]
@@ -77,7 +77,7 @@ namespace API.Controllers
             {
                 if (PasswordService.Verify(loginDto.Password, user.PasswordHash))
                 {
-                    return System.Threading.Tasks.Task.FromResult<IActionResult>(Ok(new { message = "Success" }));
+                    return System.Threading.Tasks.Task.FromResult<IActionResult>(Ok(new { userId = user.Id }));
                 }
             }
             return System.Threading.Tasks.Task.FromResult<IActionResult>(Unauthorized(new { message = "Invalid credentials" }));

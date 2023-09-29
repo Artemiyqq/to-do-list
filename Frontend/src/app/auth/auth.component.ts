@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from './auth.service';
 import { NewUserDto } from '../models/new-user-dto.model';
 import { LoginDto } from '../models/login-dto.model';
-import { UserService } from '../user.service';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-auth',
@@ -91,8 +91,8 @@ export class AuthComponent {
     const loginDto: LoginDto = new LoginDto(email, password);
     this.authService.tryToLogin(loginDto).subscribe({
       next: (response) => {
-        if (response.message === 'Success') {
-          this.userService.setLoginData(loginDto);
+        if (response.message !== "Invalid credentials") {
+          this.userService.setUserId(response.userId);
           this.authService.loginSuccess();
         } else {
           console.log("An error occurred tests:", response);

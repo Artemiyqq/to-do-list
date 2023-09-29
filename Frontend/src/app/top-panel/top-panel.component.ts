@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { UserService } from '../user.service';
+import { UserService } from '../services/user.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -19,9 +19,8 @@ export class TopPanelComponent {
   }
 
   ngOnInit(): void {
-    const userEmail = this.userService.getLoginEmail();
-    if (userEmail != null) {
-      this.userService.getUserFullName(userEmail).subscribe({
+    if (this.userService.getUserId() != null) {
+      this.userService.getUserFullName().subscribe({
         next: (nameResponse) => {
           if (nameResponse.fullName) {
             this.userFullName = nameResponse.fullName;
@@ -33,7 +32,7 @@ export class TopPanelComponent {
       });
     }
     else {
-      console.log("Having problems with user email.");
+      console.log("Having problems with user id.");
     }
   }
 
@@ -52,7 +51,7 @@ export class TopPanelComponent {
   }
 
   logout() {
-    this.userService.deleteLoginData();
+    this.userService.clearUserId();
     this.router.navigate(['/auth']);
   }
 

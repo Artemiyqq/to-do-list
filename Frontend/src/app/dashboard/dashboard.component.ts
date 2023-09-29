@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { LoginDto } from '../models/login-dto.model';
-import { UserService } from '../user.service';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -12,9 +12,7 @@ export class DashboardComponent {
   showAddTaskButton: boolean = true;
   isTaskCreateModalVisible: boolean = false;
 
-  constructor(private userService: UserService) {
-    this.loginData = userService.getLoginData();
-  }
+  constructor(private userService: UserService) {}
 
   showTaskCreateModal() {
     this.isTaskCreateModalVisible = true;
@@ -27,7 +25,6 @@ export class DashboardComponent {
   }
 
   onCategoryButtonClick(activeCategory: string) {
-    // Check if the activeCategory is not 'All' and hide the Add Task button
     if (activeCategory !== 'All') {
         this.showAddTaskButton = false;
     } else {
