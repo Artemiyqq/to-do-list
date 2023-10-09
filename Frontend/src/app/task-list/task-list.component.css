@@ -1,0 +1,71 @@
+.task-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 92vh;
+}
+
+.task-block {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  background-color: #f0f0f0;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 750px;
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+.task-info {
+  display: flex;
+  align-items: center;
+  max-width: 100%;
+}
+
+.calendar-icon {
+  width: 30px;
+  height: 30px;
+  margin-right: 5px;
+}
+
+.date {
+  font-size: 20px;
+  margin-top: 5px;
+}
+
+.task-title {
+  font-weight: bold;
+  font-size: 24px;
+  margin-right: 20px;
+}
+
+.due-date {
+  min-width: 140px;
+  display: flex;
+  align-items: center;
+}
+
+.task-description {
+  font-style: italic;
+  color: #555;
+  max-width: 100%;
+  word-wrap: break-word;
+  margin-top: 10px;
+  white-space: normal;
+  margin-left: 10px;
+  font-size: 18px;
+}
+
+.complete-icon {
+  width: 35px;
+  height: 35px;
+  margin-right: 10px;
+}
+
+.complete-icon:hover {
+  content: url('../../assets/tick-circle-icon.png');
+}
