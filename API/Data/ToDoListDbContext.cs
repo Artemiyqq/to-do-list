@@ -5,7 +5,7 @@ namespace API.Data
 {
     public class ToDoListDbContext : DbContext
     {
-        public ToDoListDbContext(DbContextOptions<ToDoListDbContext> options) : base(options) 
+        public ToDoListDbContext(DbContextOptions<ToDoListDbContext> options) : base(options)
         {
         }
 
