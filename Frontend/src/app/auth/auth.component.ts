@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AuthService } from './auth.service';
+import { AuthService } from '../services/auth.service';
 import { NewUserDto } from '../models/new-user-dto.model';
 import { LoginDto } from '../models/login-dto.model';
 import { UserService } from '../services/user.service';
