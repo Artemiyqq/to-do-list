@@ -30,5 +30,5 @@ export class DashboardComponent {
     } else {
         this.showAddTaskButton = true;
     }
-}
+  }
 }
