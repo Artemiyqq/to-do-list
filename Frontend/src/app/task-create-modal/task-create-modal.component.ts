@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Task } from '../models/task.model';
 import { TaskService } from '../services/task.service';
 
 @Component({
@@ -11,7 +10,6 @@ export class TaskCreateModalComponent {
   @Input() isVisible: boolean = false;
 
   @Output() closeModalEvent = new EventEmitter<void>();
-  @Output() createTaskEvent = new EventEmitter<Task>();
 
   constructor(private taskService: TaskService) {}
 
@@ -20,7 +18,7 @@ export class TaskCreateModalComponent {
   }
 
   createTask(taskName: string, taskDescription: string, dueDate: string) {
-    this.taskService.createTask(taskName, taskDescription, dueDate)
+    this.taskService.processNewTask(taskName, taskDescription, dueDate)
     this.closeTaskModal();
   }
 
