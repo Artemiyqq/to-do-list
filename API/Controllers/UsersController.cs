@@ -1,9 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using API.Data;
+﻿using API.Data;
 using API.Models;
 using API.Services;
-using System.Text.Json.Nodes;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace API.Controllers
 {
@@ -63,9 +62,9 @@ namespace API.Controllers
         [HttpGet("get-full-name")]
         public async Task<ActionResult<string>> GetFullName([FromQuery] int userId)
         {
-            var user =  await _context.Users.SingleOrDefaultAsync(u => u.Id == userId);
+            var user = await _context.Users.SingleOrDefaultAsync(u => u.Id == userId);
 
-            return user == null ? (ActionResult<string>)NotFound() : (ActionResult<string>)Ok( new { fullName = $"{user.FirstName} {user.LastName}" });
+            return user == null ? (ActionResult<string>)NotFound() : (ActionResult<string>)Ok(new { fullName = $"{user.FirstName} {user.LastName}" });
         }
 
 
@@ -136,7 +135,7 @@ namespace API.Controllers
             _context.Users.Add(newUser);
             await _context.SaveChangesAsync();
 
-            return Ok( new { message = "User registred successfully" });
+            return Ok(new { message = "User registred successfully" });
         }
 
         // DELETE: api/Users/5

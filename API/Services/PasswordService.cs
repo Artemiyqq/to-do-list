@@ -11,7 +11,7 @@ namespace API.Services
 
         private const char segmentDelimeter = ':';
 
-        public static string Hash(string input) 
+        public static string Hash(string input)
         {
             byte[] salt = RandomNumberGenerator.GetBytes(_saltSize);
             byte[] hash = Rfc2898DeriveBytes.Pbkdf2(input,

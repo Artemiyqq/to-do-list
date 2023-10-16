@@ -1,6 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using API.Data;
+using API.Models;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using API.Data;
 
 namespace API.Controllers
 {
@@ -19,10 +20,10 @@ namespace API.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Models.Task>>> GetTasks()
         {
-          if (_context.Tasks == null)
-          {
-              return NotFound();
-          }
+            if (_context.Tasks == null)
+            {
+                return NotFound();
+            }
             return await _context.Tasks.ToListAsync();
         }
 
@@ -30,10 +31,10 @@ namespace API.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Models.Task>> GetTask(int id)
         {
-          if (_context.Tasks == null)
-          {
-              return NotFound();
-          }
+            if (_context.Tasks == null)
+            {
+                return NotFound();
+            }
             var task = await _context.Tasks.FindAsync(id);
 
             if (task == null)
@@ -78,16 +79,31 @@ namespace API.Controllers
         // POST: api/Tasks
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Models.Task>> PostTask(Models.Task task)
+        public async Task<ActionResult<int>> PostTask([FromBody] TaskDto taskDto)
         {
-          if (_context.Tasks == null)
-          {
-              return Problem("Entity set 'ToDoListDbContext.Tasks'  is null.");
-          }
+            if (_context.Tasks == null)
+            {
+                return Problem("Entity set 'ToDoListDbContext.Tasks'  is null.");
+            }
+
+            Models.Task task = new()
+            {
+                Title = taskDto.Title,
+                Description = taskDto.Description,
+                DueDate = DateOnly.Parse(taskDto.DueDate),
+                UserId = taskDto.UserId
+            };
+
             _context.Tasks.Add(task);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetTask", new { id = task.Id }, task);
+            var newTask = await _context.Tasks.FirstOrDefaultAsync(t => t.Title == task.Title && t.UserId == task.UserId);
+
+            if (newTask != null)
+            {
+                return Ok(newTask.Id);
+            }
+            else return NotFound();
         }
 
         // DELETE: api/Tasks/5
