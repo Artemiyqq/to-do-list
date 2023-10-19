@@ -16,33 +16,18 @@ namespace API.Controllers
             _context = context;
         }
 
-        // GET: api/Tasks
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<Models.Task>>> GetTasks()
-        {
-            if (_context.Tasks == null)
-            {
-                return NotFound();
-            }
-            return await _context.Tasks.ToListAsync();
-        }
-
         // GET: api/Tasks/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Models.Task>> GetTask(int id)
+        [HttpGet("{userId}")]
+        public async Task<ActionResult<List<Models.Task>>> GetUserTasks(int userId)
         {
             if (_context.Tasks == null)
             {
                 return NotFound();
             }
-            var task = await _context.Tasks.FindAsync(id);
 
-            if (task == null)
-            {
-                return NotFound();
-            }
+            List<Models.Task> tasks = await _context.Tasks.Where(t => t.UserId == userId).ToListAsync();
 
-            return task;
+            return tasks;
         }
 
         // PUT: api/Tasks/5
