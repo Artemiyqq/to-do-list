@@ -1,5 +1,5 @@
 <div class="task-container">
-  <div *ngFor="let task of tasks" class="task-block">
+  <div *ngFor="let task of getTasksToListComponent()" class="task-block">
     <div class="task-info">
       <img src="assets/circle-icon.png" class="complete-icon" alt="Complete Icon">
       <div class="task-title">{{ task.title }}</div>

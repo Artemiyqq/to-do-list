@@ -4,14 +4,18 @@ import { UserService } from './user.service';
 import { ConfigService } from './config.service';
 import { HttpClient } from '@angular/common/http';
 import { TaskDto } from '../models/task-dto.model';
+import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs'
 
 @Injectable({
   providedIn: 'root'
 })
 export class TaskService {
+  constructor(private http: HttpClient, 
+              private configService: ConfigService,
+              private userService: UserService, ) { }
+  
   private tasks: Task[] = [];
-
-  constructor(private http: HttpClient, private configService: ConfigService, private userService: UserService) { }
 
   processNewTask(title: string, description: string, dueDate: string) {
     const newTaskDto = this.createTaskDtoObject(title, description, dueDate);
@@ -43,6 +47,19 @@ export class TaskService {
 
   getTasks(): Task[] {
     return this.tasks;
+  }
+
+  processingGetTaskRequest(userId: number): void{
+    this.getTasksRequest(userId).subscribe(tasks => {
+      this.tasks = tasks;
+    });
+  }
+
+  getTasksRequest(userId: number): Observable<Task[]> {
+    return this.http.get<Task[]>(`${this.configService.getApiBaseUrl()}/api/tasks/${userId}`)
+      .pipe(
+        map(tasks => tasks.map(task => new Task(task.id, task.title, task.description, task.isCompleted, task.dueDate, task.userId)))
+        ); 
   }
 
   postTask(task: TaskDto) {

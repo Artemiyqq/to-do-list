@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Task } from '../models/task.model';
 import { TaskService } from '../services/task.service';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-task-list',
@@ -8,11 +9,22 @@ import { TaskService } from '../services/task.service';
   styleUrls: ['./task-list.component.css']
 })
 export class TaskListComponent implements OnInit {
-  tasks: Task[] = [];
 
-  constructor(private taskService: TaskService) {}
+
+  constructor(private taskService: TaskService, private userService: UserService) {}
 
   ngOnInit(): void {
-    this.tasks = this.taskService.getTasks();
+    const userId = this.userService.getUserId();
+    if (userId != null) {
+      this.taskService.processingGetTaskRequest(userId);
+    }
+    else
+    {
+      console.error("There is a problem with the user id.")
+    }
+  }
+
+  getTasksToListComponent(): Task[] {
+    return this.taskService.getTasks();
   }
 }

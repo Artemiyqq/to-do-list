@@ -11,6 +11,7 @@ import { TaskListComponent } from './task-list/task-list.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { TopPanelComponent } from './top-panel/top-panel.component';
 import { TaskCreateModalComponent } from './task-create-modal/task-create-modal.component';
+import { TaskService } from './services/task.service';
 
 
 @NgModule({
@@ -27,7 +28,7 @@ import { TaskCreateModalComponent } from './task-create-modal/task-create-modal.
     MatTooltipModule,
     ReactiveFormsModule,
     FormsModule,],
-  providers: [],
+  providers: [TaskService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

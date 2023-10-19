@@ -8,11 +8,10 @@ import { UserService } from '../services/user.service';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent {
-  loginData: LoginDto | null = null;
   showAddTaskButton: boolean = true;
   isTaskCreateModalVisible: boolean = false;
 
-  constructor(private userService: UserService) {}
+  constructor() {}
 
   showTaskCreateModal() {
     this.isTaskCreateModalVisible = true;
