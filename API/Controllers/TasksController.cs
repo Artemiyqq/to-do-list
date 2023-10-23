@@ -91,6 +91,19 @@ namespace API.Controllers
             else return NotFound();
         }
 
+        [HttpPatch("toggle-completion/{taskId}")]
+        public async Task<ActionResult<int>> ToggleTaskCompletion(int taskId)
+        {
+            Models.Task? task = await _context.Tasks.FindAsync(taskId);
+
+            if (task == null) return NotFound();
+
+            task.IsCompleted = !task.IsCompleted;
+            await _context.SaveChangesAsync();
+
+            return Ok(taskId);
+        }
+
         // DELETE: api/Tasks/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteTask(int id)
