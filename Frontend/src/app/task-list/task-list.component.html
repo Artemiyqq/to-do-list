@@ -1,8 +1,7 @@
 <div class="task-container">
   <div *ngFor="let task of getTasksToListComponent()" class="task-block">
     <div class="task-info">
-      <img src="assets/tick-circle-icon.png" class="is-completed-icon completed-icon" alt="Task Is Completed Icon" *ngIf="task.isCompleted == true" (click)="handleImageClick(task.id)">
-      <img src="assets/circle-icon.png" class="is-completed-icon not-completed-icon" alt="Task Is Not completed Icon" *ngIf="task.isCompleted == false" (click)="handleImageClick(task.id)">
+      <img src="assets/circle-icon.png" class="complete-icon" alt="Complete Icon">
       <div class="task-title">{{ task.title }}</div>
       <div class="due-date">
         <img src="assets/calendar-icon.png" alt="Calendar Icon" class="calendar-icon">

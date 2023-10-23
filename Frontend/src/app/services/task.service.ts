@@ -65,18 +65,4 @@ export class TaskService {
   postTask(task: TaskDto) {
     return this.http.post<{id: number}>(`${this.configService.getApiBaseUrl()}/api/tasks`, task);
   }
-
-  toggleTaskCompletionRequest(taskId: number): Observable<number> {
-    return this.http.patch<number>(`${this.configService.getApiBaseUrl()}/api/tasks/toggle-completion/${taskId}`, {})
-  }
-
-  toggleTaskCompletion(taskId: number): void {
-    const index = this.tasks.findIndex(t => t.id === taskId);
-    if (index !== -1) {
-      this.tasks[index].isCompleted = !this.tasks[index].isCompleted;
-    }
-    else {
-      console.error("An error occured while changing the task status");
-    }
-  }
 }

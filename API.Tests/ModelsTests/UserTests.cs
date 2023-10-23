@@ -1,4 +1,6 @@
-﻿namespace API.Tests.ModelsTests
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace API.Tests.ModelsTests
 {
     [TestFixture]
     public class UserTests

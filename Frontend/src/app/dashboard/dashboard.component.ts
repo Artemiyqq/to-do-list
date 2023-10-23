@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { LoginDto } from '../models/login-dto.model';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -22,7 +24,7 @@ export class DashboardComponent {
   }
 
   onCategoryButtonClick(activeCategory: string) {
-    if (activeCategory === 'Completed') {
+    if (activeCategory !== 'All') {
         this.showAddTaskButton = false;
     } else {
         this.showAddTaskButton = true;

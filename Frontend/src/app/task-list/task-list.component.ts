@@ -9,6 +9,8 @@ import { UserService } from '../services/user.service';
   styleUrls: ['./task-list.component.css']
 })
 export class TaskListComponent implements OnInit {
+
+
   constructor(private taskService: TaskService, private userService: UserService) {}
 
   ngOnInit(): void {
@@ -24,12 +26,5 @@ export class TaskListComponent implements OnInit {
 
   getTasksToListComponent(): Task[] {
     return this.taskService.getTasks();
-  }
-
-  handleImageClick(taskId: number): void {
-    this.taskService.toggleTaskCompletionRequest(taskId)
-      .subscribe(changedTaskId => {
-        this.taskService.toggleTaskCompletion(changedTaskId);
-      });
   }
 }
