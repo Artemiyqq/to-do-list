@@ -44,7 +44,7 @@
 }
 
 .due-date {
-  min-width: 140px;
+  min-width: 155px;
   display: flex;
   align-items: center;
 }
@@ -60,12 +60,17 @@
   font-size: 18px;
 }
 
-.complete-icon {
+.is-completed-icon {
   width: 35px;
   height: 35px;
   margin-right: 10px;
+  cursor: pointer;
 }
 
-.complete-icon:hover {
+.not-completed-icon:hover {
   content: url('../../assets/tick-circle-icon.png');
+}
+
+.completed-icon:hover{
+  content: url('../../assets/circle-icon.png');
 }

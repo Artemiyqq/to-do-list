@@ -27,4 +27,11 @@ export class TaskListComponent implements OnInit {
   getTasksToListComponent(): Task[] {
     return this.taskService.getTasks();
   }
+
+  handleImageClick(taskId: number): void {
+    this.taskService.toggleTaskCompletionRequest(taskId)
+      .subscribe(changedTaskId => {
+        this.taskService.toggleTaskCompletion(changedTaskId);
+      });
+  }
 }
