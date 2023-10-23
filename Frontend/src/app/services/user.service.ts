@@ -7,7 +7,7 @@ import { ConfigService } from './config.service';
   providedIn: 'root'
 })
 export class UserService {
-  private userId: number | null = null;
+  private userId: number | null = 9;
 
   constructor(private configService: ConfigService, private http: HttpClient) { }
 
