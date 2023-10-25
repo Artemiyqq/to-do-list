@@ -12,6 +12,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { TopPanelComponent } from './top-panel/top-panel.component';
 import { TaskCreateModalComponent } from './task-create-modal/task-create-modal.component';
 import { TaskService } from './services/task.service';
+import { DateColorPipe } from './pipes/date-color.pipe';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { TaskService } from './services/task.service';
     TaskListComponent,
     DashboardComponent,
     TopPanelComponent,
-    TaskCreateModalComponent,],
+    TaskCreateModalComponent,
+    DateColorPipe,],
   imports: [BrowserModule,
     HttpClientModule,
     AppRoutingModule,

@@ -6,7 +6,7 @@
       <div class="task-title">{{ task.title }}</div>
       <div class="due-date">
         <img src="assets/calendar-icon.png" alt="Calendar Icon" class="calendar-icon">
-        <div class="date">{{ task.dueDate | date:'mediumDate' }}</div>
+        <div class="date" [style.color]="task.dueDate | dateColor">{{ task.dueDate | date:'mediumDate' }}</div>
       </div>
     </div>
     <div class="task-description" *ngIf="task.description && task.description.length > 0">{{ task.description }}</div>

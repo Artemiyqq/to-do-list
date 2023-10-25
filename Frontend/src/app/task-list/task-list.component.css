@@ -9,7 +9,6 @@
 .task-block {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
   justify-content: center;
   background-color: #f0f0f0;
   padding: 20px;
@@ -46,7 +45,9 @@
 .due-date {
   min-width: 155px;
   display: flex;
-  align-items: center;
+  margin-left: auto;
+  font-weight: bold;
+  coloe: rgb(204, 7, 7);
 }
 
 .task-description {
