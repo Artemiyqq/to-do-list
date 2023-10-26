@@ -1,9 +1,9 @@
 <div class="top-panel">
   <div class="category-buttons">
     <img src="assets/to-do-list.jpg" alt="Tasks Image" class="tasks-image">
-    <button class="category-button" [class.active]="activeCategory === 'All'" (click)="setActiveCategory('All')">All</button>
-    <button class="category-button" [class.active]="activeCategory === 'Not Completed'" (click)="setActiveCategory('Not Completed')">Not Completed</button>
-    <button class="category-button" [class.active]="activeCategory === 'Completed'" (click)="setActiveCategory('Completed')">Completed</button>
+    <button class="category-button" [class.active]="topPanelService.getActiveCategory() === 'All'" (click)="changeActiveCategory('All')">All</button>
+    <button class="category-button" [class.active]="topPanelService.getActiveCategory() === 'Not Completed'" (click)="changeActiveCategory('Not Completed')">Not Completed</button>
+    <button class="category-button" [class.active]="topPanelService.getActiveCategory() === 'Completed'" (click)="changeActiveCategory('Completed')">Completed</button>
   </div>
 
   <div class="account-button-container">

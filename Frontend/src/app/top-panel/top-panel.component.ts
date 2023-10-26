@@ -1,6 +1,7 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { UserService } from '../services/user.service';
 import { Router } from '@angular/router';
+import { TopPanelService } from '../services/top-panel.service';
 
 @Component({
   selector: 'app-top-panel',
@@ -8,13 +9,14 @@ import { Router } from '@angular/router';
   styleUrls: ['./top-panel.component.css']
 })
 export class TopPanelComponent {
-  activeCategory: string = 'All';
   userFullName: string = '';
   showDropdown: boolean = false;
 
   @Output() categoryButtonClick = new EventEmitter<string>();
 
-  constructor(private userService: UserService, private router: Router) {
+  constructor(private userService: UserService,
+              private router: Router,
+              public topPanelService: TopPanelService) {
     document.addEventListener('click', this.onDocumentClick.bind(this));
   }
 
@@ -55,8 +57,8 @@ export class TopPanelComponent {
     this.router.navigate(['/auth']);
   }
 
-  setActiveCategory(category: string) {
-    this.activeCategory = category;
+  changeActiveCategory(category: string) {
+    this.topPanelService.setActiveCategory(category);
     this.categoryButtonClick.emit(category);
   }
 }
