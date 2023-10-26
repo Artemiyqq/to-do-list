@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Task } from '../models/task.model';
 import { TaskService } from '../services/task.service';
 import { UserService } from '../services/user.service';
+import { TopPanelService } from '../services/top-panel.service';
 
 @Component({
   selector: 'app-task-list',
@@ -9,7 +10,9 @@ import { UserService } from '../services/user.service';
   styleUrls: ['./task-list.component.css']
 })
 export class TaskListComponent implements OnInit {
-  constructor(private taskService: TaskService, private userService: UserService) {}
+  constructor(private taskService: TaskService,
+              private userService: UserService,
+              private topPanelService: TopPanelService) {}
 
   ngOnInit(): void {
     const userId = this.userService.getUserId();
@@ -23,7 +26,13 @@ export class TaskListComponent implements OnInit {
   }
 
   getTasksToListComponent(): Task[] {
-    return this.taskService.getTasks();
+    if (this.topPanelService.getActiveCategory() === 'All') {
+      return this.taskService.getTasks();
+    } else if (this.topPanelService.getActiveCategory() === 'Not Completed') {
+      return this.taskService.getTasks().filter(task => !task.isCompleted);
+    } else {
+      return this.taskService.getTasks().filter(task => task.isCompleted);
+    } 
   }
 
   handleImageClick(taskId: number): void {

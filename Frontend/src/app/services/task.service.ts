@@ -51,7 +51,7 @@ export class TaskService {
 
   processingGetTaskRequest(userId: number): void{
     this.getTasksRequest(userId).subscribe(tasks => {
-      this.tasks = tasks;
+      this.tasks = tasks.sort((a, b) => b.id - a.id);
     });
   }
 
