@@ -1,4 +1,6 @@
 .top-panel {
+    position: fixed;
+    width: 100%;
     display: flex;
     justify-content: center;
     background-color: #f5d9d9;
