@@ -16,7 +16,6 @@ namespace API.Controllers
             _context = context;
         }
 
-        // GET: api/Tasks/5
         [HttpGet("{userId}")]
         public async Task<ActionResult<List<Models.Task>>> GetUserTasks(int userId)
         {
@@ -30,17 +29,19 @@ namespace API.Controllers
             return tasks;
         }
 
-        // PUT: api/Tasks/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutTask(int id, Models.Task task)
+        public async Task<IActionResult> PutTask(int id, TaskDto taskDto)
         {
-            if (id != task.Id)
-            {
-                return BadRequest();
-            }
+            Models.Task? task = await _context.Tasks.FindAsync(id);
 
-            _context.Entry(task).State = EntityState.Modified;
+            if (task == null) return NotFound();
+
+            if (task.Title != taskDto.Title) task.Title = taskDto.Title;
+            if (task.Description != taskDto.Description) task.Description = taskDto.Description;
+
+            DateOnly newDate = DateOnly.Parse(taskDto.DueDate);
+
+            if (task.DueDate.ToString() != newDate.ToString()) task.DueDate = newDate;
 
             try
             {
@@ -48,21 +49,12 @@ namespace API.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!TaskExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                throw;
             }
 
-            return NoContent();
+            return Ok();
         }
 
-        // POST: api/Tasks
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<int>> PostTask([FromBody] TaskDto taskDto)
         {
@@ -104,7 +96,6 @@ namespace API.Controllers
             return Ok(taskId);
         }
 
-        // DELETE: api/Tasks/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteTask(int id)
         {
@@ -121,12 +112,7 @@ namespace API.Controllers
             _context.Tasks.Remove(task);
             await _context.SaveChangesAsync();
 
-            return NoContent();
-        }
-
-        private bool TaskExists(int id)
-        {
-            return (_context.Tasks?.Any(e => e.Id == id)).GetValueOrDefault();
+            return Ok();
         }
     }
 }

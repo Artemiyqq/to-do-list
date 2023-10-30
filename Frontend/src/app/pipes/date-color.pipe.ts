@@ -9,13 +9,13 @@ export class DateColorPipe implements PipeTransform {
             dueDate = new Date(dueDate);
         }
 
-        const currentDate = new Date().toISOString().split('T')[0]; // get today's date as 'YYYY-MM-DD'
+        const currentDate = new Date().toISOString().split('T')[0];
         const dueDateStr = dueDate.toISOString().split('T')[0];
 
         if (dueDateStr < currentDate) {
             return 'rgb(204, 7, 7)';
         }
-        console.log(dueDate, currentDate)
+
         return 'black';
     }
 }

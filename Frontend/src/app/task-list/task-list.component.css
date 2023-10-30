@@ -3,9 +3,12 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 92vh;
-  padding-top: 100px;
-  padding-bottom: 85px;
+  padding-top: 85px;
+  padding-bottom: 95px;
+}
+
+.task-container-with-no-button {
+  padding-bottom: 5px;
 }
 
 .task-block {
@@ -15,10 +18,11 @@
   background-color: #f0f0f0;
   padding: 20px;
   border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgba(151, 129, 129, 0.1);
   width: 750px;
   text-align: left;
   margin-bottom: 20px;
+  cursor: pointer;
 }
 
 .task-info {
