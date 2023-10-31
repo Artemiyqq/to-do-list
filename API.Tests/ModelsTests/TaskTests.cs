@@ -10,7 +10,7 @@
             {
                 Title = "Sample task",
                 Description = "Just sample task for test",
-                DueDate = DateTime.Today.AddDays(7),
+                DueDate = DateOnly.Parse(DateTime.Today.ToString("d")),
                 UserId = 1
             };
 
