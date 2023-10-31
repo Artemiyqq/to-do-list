@@ -17,35 +17,6 @@ namespace API.Controllers
             _context = context;
         }
 
-        // GET: api/Users
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<User>>> GetUsers()
-        {
-            if (_context.Users == null)
-            {
-                return NotFound();
-            }
-            return await _context.Users.ToListAsync();
-        }
-
-        // GET: api/Users/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<User>> GetUser(int id)
-        {
-            if (_context.Users == null)
-            {
-                return NotFound();
-            }
-            var user = await _context.Users.FindAsync(id);
-
-            if (user == null)
-            {
-                return NotFound();
-            }
-
-            return user;
-        }
-
         [HttpGet("check-email")]
         public async Task<ActionResult<bool>> CheckIfEmailExists([FromQuery] string email)
         {
@@ -82,8 +53,6 @@ namespace API.Controllers
             return System.Threading.Tasks.Task.FromResult<IActionResult>(Unauthorized(new { message = "Invalid credentials" }));
         }
 
-        // PUT: api/Users/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         public async Task<IActionResult> PutUser(int id, User user)
         {
@@ -113,9 +82,6 @@ namespace API.Controllers
             return NoContent();
         }
 
-        // POST: api/Users
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
         public async Task<IActionResult> PostUser([FromBody] NewUserDto newUserDto)
         {
             if (_context.Users == null)
@@ -138,7 +104,6 @@ namespace API.Controllers
             return Ok(new { message = "User registred successfully" });
         }
 
-        // DELETE: api/Users/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteUser(int id)
         {
