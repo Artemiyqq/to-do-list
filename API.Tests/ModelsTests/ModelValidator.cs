@@ -1,7 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
+
 namespace API.Tests.ModelsTests
 {
-    internal class ModelValidator
+    public class ModelValidator
     {
         public static List<ValidationResult> ValidateModel(object model)
         {

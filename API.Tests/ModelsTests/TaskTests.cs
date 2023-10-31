@@ -14,7 +14,7 @@
                 UserId = 1
             };
 
-            var validationResult = ModelValidator.ValidateModel(task);
+            List<ValidationResult> validationResult = ModelValidator.ValidateModel(task);
 
             Assert.That(validationResult, Is.Empty, "Task model should pass validation");
         }
