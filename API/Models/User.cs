@@ -19,6 +19,5 @@ namespace API.Models
         [Required]
         public string PasswordHash { get; set; } = default!;
 
-        public ICollection<Models.Task> Tasks { get; set; } = default!;
     }
 }

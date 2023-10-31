@@ -1,0 +1,24 @@
+<div class="modal" *ngIf="selectedTask !== null">
+    <div class="modal-content">
+        <div class="buttons">
+            <button class="delete-button" (click)="deleteTask()">Delete Task</button>
+        </div>
+        <h2>Change Task Details</h2>
+        <div class="first-form-group">
+            <label for="title">Title</label>
+            <input type="text" class="small-input" [(ngModel)]="selectedTask.title" *ngIf="selectedTask"/>
+        </div>
+        <div class="form-group">
+            <label for="description">Description</label>
+            <textarea id="description" rows="4" style="resize: none;" [(ngModel)]="selectedTask.description"  *ngIf="selectedTask"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="dueDate">Due Date</label>
+            <input type="date" class="small-input" [(ngModel)]="selectedTask.dueDate" *ngIf="selectedTask" [min]="taskService.getMinDueDateForNewTask()"/>
+        </div>
+        <div class="buttons">
+            <button class="cancel-button" (click)="cancel()">Cancel</button>
+            <button class="save-button" (click)="saveChanges()">Save</button>
+        </div>
+    </div>
+</div>

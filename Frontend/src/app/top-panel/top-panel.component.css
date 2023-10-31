@@ -1,0 +1,104 @@
+.top-panel {
+    position: fixed;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background-color: #f5d9d9;
+    padding: 10px;
+    border-bottom: 1px solid #e0d3d3;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 10px;
+}
+
+.category-buttons,
+.account-button-container {
+    display: flex;
+    justify-content: center;
+}
+
+.category-buttons {
+    padding-right: 2%;
+}
+
+.tasks-image,
+.account-image {
+    width: 48px;
+    height: 48px;
+}
+
+.tasks-image {
+    margin-right: 10px;
+}
+
+.category-button,
+.account-button {
+    background-color: transparent;
+    color: black;
+    border: none;
+    margin-right: 3px;
+    cursor: pointer;
+    font-size: 24px;
+    font-weight: bold;
+    padding: 0px 10px;
+    transition: background-color 0.3s, color 0.3s, border-radius 0.3s;
+    border-radius: 10px;
+}
+
+.account-button {
+    margin-top: 5px;
+    padding: 5px 10px;
+    &:hover {
+        color: white;
+        background-color: #8e8eca;
+    }
+}
+
+.account-button-dropdown {
+    position: relative;
+    display: inline-block;
+    width: fit-content;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #ffc6c6;
+    width: 100%;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    right: 0;
+    top: calc(100% + 5px);
+    border-radius: 10px;
+}
+
+.dropdown-item {
+    background: transparent;
+    border: none;
+    padding: 10px;
+    width: 100%;
+    text-align: left;
+    font-size: 20px;
+    color: black;
+    border-radius: 10px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.dropdown-item:hover {
+    background-color: rgb(243, 194, 194);
+    color: white;
+    cursor: pointer;
+}
+
+.account-button.active + .dropdown-content {
+    display: block;
+}
+
+.category-button.active {
+    background-color: #5e5e9c;
+    color: white;
+}
+
+.category-button:not(.active):hover {
+    color: white;
+    background-color: #8e8eca;
+}

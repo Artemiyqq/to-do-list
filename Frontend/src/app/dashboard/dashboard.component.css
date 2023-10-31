@@ -1,0 +1,24 @@
+.add-task-button-container {
+  position: fixed;
+  bottom: 4%;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+}
+
+.add-task-button {
+  font-size: 28px;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  background-color: rgb(190, 118, 118);
+  transition: background-color 0.3s, color 0.3s;
+  border-radius: 10px;
+  font-weight: bold;
+}
+
+.add-task-button:hover {
+  background-color: rgb(207, 151, 151);
+  color: white;
+}

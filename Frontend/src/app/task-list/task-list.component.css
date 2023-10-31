@@ -1,0 +1,82 @@
+.task-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: 85px;
+  padding-bottom: 95px;
+}
+
+.task-container-with-no-button {
+  padding-bottom: 5px;
+}
+
+.task-block {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: #f0f0f0;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(151, 129, 129, 0.1);
+  width: 750px;
+  text-align: left;
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+
+.task-info {
+  display: flex;
+  align-items: center;
+  max-width: 100%;
+}
+
+.calendar-icon {
+  width: 30px;
+  height: 30px;
+  margin-right: 5px;
+}
+
+.date {
+  font-size: 20px;
+  margin-top: 5px;
+}
+
+.task-title {
+  font-weight: bold;
+  font-size: 24px;
+  margin-right: 20px;
+}
+
+.due-date {
+  min-width: 155px;
+  display: flex;
+  margin-left: auto;
+  font-weight: bold;
+}
+
+.task-description {
+  font-style: italic;
+  color: #555;
+  max-width: 100%;
+  word-wrap: break-word;
+  margin-top: 10px;
+  white-space: normal;
+  margin-left: 10px;
+  font-size: 18px;
+}
+
+.is-completed-icon {
+  width: 35px;
+  height: 35px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.not-completed-icon:hover {
+  content: url('../../assets/tick-circle-icon.png');
+}
+
+.completed-icon:hover{
+  content: url('../../assets/circle-icon.png');
+}

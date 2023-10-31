@@ -1,6 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using API.Data;
+using API.Models;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using API.Data;
 
 namespace API.Controllers
 {
@@ -15,46 +16,32 @@ namespace API.Controllers
             _context = context;
         }
 
-        // GET: api/Tasks
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<Models.Task>>> GetTasks()
+        [HttpGet("{userId}")]
+        public async Task<ActionResult<List<Models.Task>>> GetUserTasks(int userId)
         {
-          if (_context.Tasks == null)
-          {
-              return NotFound();
-          }
-            return await _context.Tasks.ToListAsync();
-        }
-
-        // GET: api/Tasks/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Models.Task>> GetTask(int id)
-        {
-          if (_context.Tasks == null)
-          {
-              return NotFound();
-          }
-            var task = await _context.Tasks.FindAsync(id);
-
-            if (task == null)
+            if (_context.Tasks == null)
             {
                 return NotFound();
             }
 
-            return task;
+            List<Models.Task> tasks = await _context.Tasks.Where(t => t.UserId == userId).ToListAsync();
+
+            return tasks;
         }
 
-        // PUT: api/Tasks/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutTask(int id, Models.Task task)
+        public async Task<IActionResult> PutTask(int id, TaskDto taskDto)
         {
-            if (id != task.Id)
-            {
-                return BadRequest();
-            }
+            Models.Task? task = await _context.Tasks.FindAsync(id);
 
-            _context.Entry(task).State = EntityState.Modified;
+            if (task == null) return NotFound();
+
+            if (task.Title != taskDto.Title) task.Title = taskDto.Title;
+            if (task.Description != taskDto.Description) task.Description = taskDto.Description;
+
+            DateOnly newDate = DateOnly.Parse(taskDto.DueDate);
+
+            if (task.DueDate.ToString() != newDate.ToString()) task.DueDate = newDate;
 
             try
             {
@@ -62,35 +49,53 @@ namespace API.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!TaskExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                throw;
             }
 
-            return NoContent();
+            return Ok();
         }
 
-        // POST: api/Tasks
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Models.Task>> PostTask(Models.Task task)
+        public async Task<ActionResult<int>> PostTask([FromBody] TaskDto taskDto)
         {
-          if (_context.Tasks == null)
-          {
-              return Problem("Entity set 'ToDoListDbContext.Tasks'  is null.");
-          }
+            if (_context.Tasks == null)
+            {
+                return Problem("Entity set 'ToDoListDbContext.Tasks'  is null.");
+            }
+
+            Models.Task task = new()
+            {
+                Title = taskDto.Title,
+                Description = taskDto.Description,
+                DueDate = DateOnly.Parse(taskDto.DueDate),
+                UserId = taskDto.UserId
+            };
+
             _context.Tasks.Add(task);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetTask", new { id = task.Id }, task);
+            var newTask = await _context.Tasks.FirstOrDefaultAsync(t => t.Title == task.Title && t.UserId == task.UserId);
+
+            if (newTask != null)
+            {
+                return Ok(newTask.Id);
+            }
+            else return NotFound();
         }
 
-        // DELETE: api/Tasks/5
+        [HttpPatch("toggle-completion/{taskId}")]
+        public async Task<ActionResult<int>> ToggleTaskCompletion(int taskId)
+        {
+            Models.Task? task = await _context.Tasks.FindAsync(taskId);
+
+            if (task == null) return NotFound();
+
+            task.IsCompleted = !task.IsCompleted;
+            await _context.SaveChangesAsync();
+
+            return Ok(taskId);
+        }
+
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteTask(int id)
         {
@@ -107,12 +112,7 @@ namespace API.Controllers
             _context.Tasks.Remove(task);
             await _context.SaveChangesAsync();
 
-            return NoContent();
-        }
-
-        private bool TaskExists(int id)
-        {
-            return (_context.Tasks?.Any(e => e.Id == id)).GetValueOrDefault();
+            return Ok();
         }
     }
 }

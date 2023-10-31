@@ -1,0 +1,16 @@
+<div class="task-container" [class.task-container-with-no-button]="topPanelService.getActiveCategory() === 'Completed'">
+  <div *ngFor="let task of getTasksToListComponent()" class="task-block" (click)="handleTaskClick(task)">
+    <div class="task-info">
+      <img src="assets/tick-circle-icon.png" class="is-completed-icon completed-icon" alt="Task Is Completed Icon" *ngIf="task.isCompleted == true" (click)="handleImageClick($event, task.id)">
+      <img src="assets/circle-icon.png" class="is-completed-icon not-completed-icon" alt="Task Is Not completed Icon" *ngIf="task.isCompleted == false" (click)="handleImageClick($event, task.id)">
+      <div class="task-title">{{ task.title }}</div>
+      <div class="due-date">
+        <img src="assets/calendar-icon.png" alt="Calendar Icon" class="calendar-icon">
+        <div class="date" [style.color]="task.dueDate | dateColor">{{ task.dueDate | date:'mediumDate' }}</div>
+      </div>
+    </div>
+    <div class="task-description" *ngIf="task.description && task.description.length > 0">{{ task.description }}</div>
+  </div>
+</div>
+
+<app-task-detail-modal></app-task-detail-modal>

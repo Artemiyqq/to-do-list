@@ -1,3 +1,10 @@
+.container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-height: 100vh;
+}
+
 .main {
 	width: 350px;
 	height: 500px;
@@ -21,10 +28,13 @@ label {
 	font-size: 2.3em;
 	justify-content: center;
 	display: flex;
-	margin: 30px;
 	font-weight: bold;
 	cursor: pointer;
 	transition: .5s ease-in-out;
+}
+
+.signup-label {
+	margin: 30px;
 }
 
 input {
@@ -81,10 +91,28 @@ button:active {
 }
 
 .login label {
-	padding-top: 40px;
+	padding-bottom: 11px;
 	color: #ffffff;
 	transform: scale(.7);
-	padding-bottom: 10px;
+}
+
+.login-label-and-error-h4 {
+	padding-top: 40px;
+}
+
+.failed-attempt-to-login, .succesful-sign-up {
+	justify-content: center;
+	display: flex;
+	margin-top: 0%;
+	padding-top: 0%;
+}
+
+.failed-attempt-to-login {
+	color: #ff7373;
+}
+
+.succesful-sign-up {
+	color: #67b664;
 }
 
 #chk:checked~.login {
@@ -107,7 +135,7 @@ button:active {
 	position: absolute;
 	right: 70px;
 	top: 20%;
-	transform: translateY(-265%);
+	transform: translateY(-300%);
 	cursor: pointer;
-	width: 8%;
+	width: 7%;
 }

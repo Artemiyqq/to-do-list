@@ -1,0 +1,87 @@
+.modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: linear-gradient(to top, #9284c0, #c58f8f, rgb(248, 204, 204));
+    width: 350px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    text-align: center;
+    z-index: 1000;
+}
+
+form {
+    padding-top: 0px;
+}
+
+.modal h2 {
+    font-size: 28px;
+}
+
+.form-group {
+    margin: 15px 0;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.small-input {
+    background-color: #fde3e3;;
+    font-size: 20px;
+}
+
+.form-group textarea {
+    font-size: 18px;
+    resize: none;
+}
+
+.form-group textarea, .small-input, .date-input{
+    width: 95%;
+    padding: 10px;
+    border: 1px solid rgb(80, 79, 79);
+    background-color: #fde3e3;
+    border-radius: 5px;
+}
+
+.date-input {
+    font-size: 18px;
+}
+
+.button-group {
+    margin-top: 40px;
+}
+
+.cancel-button,
+.create-button {
+    padding: 10px 20px;
+    font-size: 22px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.cancel-button {
+    background-color: #a33c3c;
+    color: white;
+}
+
+.cancel-button:hover {
+    background-color: #c74444;
+}
+
+.create-button {
+    background-color: #d18888;
+    color: white;
+    margin-left: 10px;
+}
+
+.create-button:hover {
+    background-color: #e7afaf;
+}
