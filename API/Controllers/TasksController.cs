@@ -19,14 +19,14 @@ namespace API.Controllers
         [HttpGet("{userId}")]
         public async Task<ActionResult<List<Models.Task>>> GetUserTasks(int userId)
         {
-            if (_context.Tasks == null)
+            bool userExists = await _context.Users.AnyAsync(u => u.Id == userId);
+            if (!userExists)
             {
                 return NotFound();
             }
 
             List<Models.Task> tasks = await _context.Tasks.Where(t => t.UserId == userId).ToListAsync();
-
-            return tasks;
+            return Ok(tasks);
         }
 
         [HttpPut("{id}")]
