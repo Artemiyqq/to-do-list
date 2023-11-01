@@ -53,35 +53,6 @@ namespace API.Controllers
             return System.Threading.Tasks.Task.FromResult<IActionResult>(Unauthorized(new { message = "Invalid credentials" }));
         }
 
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutUser(int id, User user)
-        {
-            if (id != user.Id)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(user).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!UserExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
-        }
-
         public async Task<IActionResult> PostUser([FromBody] NewUserDto newUserDto)
         {
             if (_context.Users == null)
@@ -102,25 +73,6 @@ namespace API.Controllers
             await _context.SaveChangesAsync();
 
             return Ok(new { message = "User registred successfully" });
-        }
-
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteUser(int id)
-        {
-            if (_context.Users == null)
-            {
-                return NotFound();
-            }
-            var user = await _context.Users.FindAsync(id);
-            if (user == null)
-            {
-                return NotFound();
-            }
-
-            _context.Users.Remove(user);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
         }
 
         private bool UserExists(int id)
