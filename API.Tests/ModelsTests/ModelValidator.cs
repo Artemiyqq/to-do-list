@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace API.Tests.ModelsTests
+﻿namespace API.Tests.ModelsTests
 {
     public class ModelValidator
     {
