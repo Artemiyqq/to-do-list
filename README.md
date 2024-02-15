@@ -72,7 +72,8 @@ A simple ToDo list application with backend in ASP.NET Core (C#) and frontend in
 1. Run Entity Framework migrations:
    ```
    cd API
-   dotnet ef database update
+   dotnet ef database update 20230828184940_Initial
+   dotnet ef database update 20231014102624_DataBaseV1.1
    ```
 
 ### Usage
